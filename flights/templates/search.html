@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Search Page</title>
 </head>
 <body>
+    <h1>Search Page</h1>
+
+    <form method="GET" action="{% url 'search_view' %}">
+        <label for="search_query">Search:</label>
+        <input type="text" id="search_query" name="q" placeholder="Enter your search query">
+        <button type="submit">Search</button>
+    </form>
+
+
 
 </body>
 </html>

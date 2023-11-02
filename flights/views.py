@@ -128,3 +128,6 @@ def delete_flight(request, flight_id):
 def flight_list(request):
     flights = Flight.objects.all()
     return render(request, 'flight_management/flight_list.html', {'flights': flights})
+
+def landing_page(request):
+    return render(request, 'landing.html')

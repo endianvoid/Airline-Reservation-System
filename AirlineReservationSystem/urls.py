@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from flights import views
-
+from django.urls import path, include
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+from flights.views import landing_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('flight_list/', views.flight_list, name='flight_list'),
@@ -32,5 +36,9 @@ urlpatterns = [
     path('create_flight/', views.create_flight, name='create_flight'),
     path('update_flight/<int:flight_id>/', views.update_flight, name='update_flight'),
     path('delete_flight/<int:flight_id>/', views.delete_flight, name='delete_flight'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
+    path('', landing_page, name='landing_page'),
+    path('flight_list/', views.flight_list, name='flight_list'),
 
 ]

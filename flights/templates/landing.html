@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Airline Reservation System</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Airline Reservation System</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'flight_list' %}">View Flights</a></li>
+            <li><a href="{% url 'registration_view' %}">Register</a></li>
+            <li><a href="{% url 'login_view' %}">Login</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>About Us</h2>
+        <p>
+            Welcome to our Airline Reservation System. We provide a seamless flight booking experience.
+        </p>
+    </section>
+    <section>
+        <h2>Contact Us</h2>
+        <p>
+            If you have any questions or need assistance, please don't hesitate to <a href="contact.html">contact us</a>.
+        </p>
+    </section>
+    <footer>
+        &copy; 2023 Airline Reservation System
+    </footer>
+</body>
+</html>

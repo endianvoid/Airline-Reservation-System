@@ -40,15 +40,15 @@ def login_view(request):
 
 def flight_detail(request, flight_id):
     flight = get_object_or_404(Flight, pk=flight_id)
-    return render(request, 'flight_management/flight_detail.html', {'flight': flight})
+    return render(request, 'flight_detail.html')
 
 def reservation_view(request, reservation_id):
     reservation = get_object_or_404(Reservation, pk=reservation_id)
-    return render(request, 'your_template_name.html', {'reservation': reservation})
+    return render(request, 'reservation_view.html')
 
 def payment_view(request, payment_id):
     payment = get_object_or_404(Payment, pk=payment_id)
-    return render(request, 'payment.html', {'payment': payment})
+    return render(request, 'payment.html')
 
 
 def search_view(request):
@@ -98,7 +98,7 @@ def create_flight(request):
     else:
         form = FlightForm()
 
-    return render(request, 'flight_management/create_flight.html', {'form': form})
+    return render(request, 'create_flight.html', {'form': form})
 
 @login_required
 def update_flight(request, flight_id):
@@ -112,7 +112,7 @@ def update_flight(request, flight_id):
     else:
         form = FlightForm(instance=flight)
 
-    return render(request, 'flight_management/update_flight.html', {'form': form, 'flight': flight})
+    return render(request, 'update_flight.html', {'form': form})
 
 @login_required
 def delete_flight(request, flight_id):
@@ -122,12 +122,13 @@ def delete_flight(request, flight_id):
         flight.delete()
         return redirect('flight_list')
 
-    return render(request, 'flight_management/delete_flight.html', {'flight': flight})
+    return render(request, 'delete_flight.html')
 
-@login_required
+
 def flight_list(request):
     flights = Flight.objects.all()
-    return render(request, 'flight_management/flight_list.html', {'flights': flights})
+    return render(request, 'flight_list.html')
+
 
 def landing_page(request):
     return render(request, 'landing.html')

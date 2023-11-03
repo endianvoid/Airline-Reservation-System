@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Airports</title>
+</head>
+<body>
+    <h1>Select Airports</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Add form fields for selecting departure and arrival airports -->
+        <button type="submit">Find Connecting Flights</button>
+    </form>
+</body>
+</html>

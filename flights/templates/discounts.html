@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applicable Discounts</title>
+</head>
+<body>
+    <h1>Applicable Discounts</h1>
+    <p>Welcome, {{ user.username }}!</p>
+    <h2>Available Discounts:</h2>
+    <ul>
+        {% for discount in applicable_discounts %}
+            <li>{{ discount.name }} - {{ discount.description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

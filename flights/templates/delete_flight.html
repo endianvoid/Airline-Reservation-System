@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Flight</title>
+</head>
+<body>
+    <h1>Delete Flight</h1>
+    <p>Are you sure you want to delete the flight: {{ flight.name }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Flight</button>
+    </form>
+</body>
+</html>

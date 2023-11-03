@@ -39,6 +39,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('', landing_page, name='landing_page'),
-    path('flight_list/', views.flight_list, name='flight_list'),
+
 
 ]

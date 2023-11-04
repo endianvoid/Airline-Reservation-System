@@ -22,18 +22,21 @@ class Discount(models.Model):
         return self.name
 
 class Flight(models.Model):
-    def arrival_time_must_be_after_departure_time(self):
-        if self.arrival_time <= self.departure_time:
-            raise ValidationError("Arrival time must be after departure time.")
     flight_number = models.CharField(max_length=10)
     departure_airport = models.CharField(max_length=3)
     arrival_airport = models.CharField(max_length=3)
     available_seats = models.PositiveIntegerField()
     ticket_price = models.DecimalField(max_digits=10, decimal_places=2)
     departure_time = models.DateTimeField()
-    arrival_time = models.DateTimeField(
-        validators=[arrival_time_must_be_after_departure_time]
-    )
+    arrival_time = models.DateTimeField()
+
+    def arrival_time_must_be_after_departure_time(self):
+        if self.arrival_time <= self.departure_time:
+            raise ValidationError("Arrival time must be after departure time.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
 class FamilyMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

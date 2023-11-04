@@ -7,9 +7,16 @@
 <body>
     <h1>Flight List</h1>
     <ul>
+                <form method="GET" action="{% url 'search_view' %}">
+        <label for="search_query">Search:</label>
+        <input type="text" id="search_query" name="q" placeholder="Enter your search query">
+        <button type="submit">Search</button>
+        </form>
+        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_flight' %}">Create Flight</a>
+                    </li>
         {% for flight in flights %}
-            <li><a href="{% url 'flight_list' %}">View Flights</a></li>
-
+            <a href="{% url 'flight_detail' flight.id %}">{{ flight.flight_number }}</a>
         {% endfor %}
     </ul>
 </body>

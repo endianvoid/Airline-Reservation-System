@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to the most shitty Airline Reservation System</title>
+    <title>Welcome to the most awesome Airline Reservation System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to the most shitty Airline Reservation System</h1>
+    <header class="bg-primary text-white text-center py-4">
+        <h1>Welcome to the most awesome Airline Reservation System</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="{% url 'flight_list' %}">View Flights</a></li>
-            <li><a href="{% url 'registration_view' %}">Register</a></li>
-            <li><a href="{% url 'login_view' %}">Login</a></li>
-        </ul>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Airline Reservation</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration_view' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login_view' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'flight_list' %}">View Flights</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <section>
-        <h2>About Us</h2>
-        <p>
-            Welcome to our Airline Reservation System. We provide a seamless flight booking experience.
-        </p>
-    </section>
-    <section>
-        <h2>Contact Us</h2>
-        <p>
-            If you have any questions or need assistance, please hesitate to <a href="contact.html">contact us</a>.
-        </p>
-    </section>
-    <footer>
-        &copy; Msutafa Thaeer 2023 Airline Reservation System
+
+    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+        &copy; Mustafa Thaeer 2023 Airline Reservation System
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <section>
+                        <h2 class="text-center">About Us</h2>
+                        <p>
+                            Welcome to our Airline Reservation System. We provide a seamless flight booking experience.
+                        </p>
+                    </section>
+                </div>
+                <div class="col-md-6">
+                    <section>
+                        <h2 class="text-center">Contact Us</h2>
+                        <p>
+                            If you have any questions or need assistance, please don't hesitate to <a href="contact.html">contact us</a>.
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

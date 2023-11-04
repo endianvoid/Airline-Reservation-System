@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from .models import Flight
 from .forms import FlightForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+
 
 @login_required
 def user_profile(request):
@@ -40,7 +42,7 @@ def login_view(request):
 
 def flight_detail(request, flight_id):
     flight = get_object_or_404(Flight, pk=flight_id)
-    return render(request, 'flight_detail.html')
+    return render(request, 'flight_detail.html',  {'flight': flight})
 
 def reservation_view(request, reservation_id):
     reservation = get_object_or_404(Reservation, pk=reservation_id)
@@ -88,6 +90,7 @@ def find_connecting_flights(request):
         return render(request, 'select_airports.html')
 
 
+
 @login_required
 def create_flight(request):
     if request.method == 'POST':
@@ -127,7 +130,11 @@ def delete_flight(request, flight_id):
 
 def flight_list(request):
     flights = Flight.objects.all()
-    return render(request, 'flight_list.html')
+    context={
+
+      'flights':flights
+    }
+    return render(request, 'flight_list.html', context)
 
 
 def landing_page(request):

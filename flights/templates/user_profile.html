@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,5 +8,23 @@
 <body>
     <h1>User Profile</h1>
     <p>Welcome, {{ user.username }}!</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Total Tickets Purchased: {{ total_tickets_purchased }}</p>
+
+    <h2>Reservation History</h2>
+    <ul>
+        {% for reservation in reservations %}
+            <li>
+                Flight: {{ reservation.flight.flight_number }}
+                (Departure: {{ reservation.flight.departure_airport }}, Arrival: {{ reservation.flight.arrival_airport }})
+            </li>
+        {% empty %}
+            <p>No reservations found.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
 </body>
 </html>

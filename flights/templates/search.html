@@ -10,6 +10,18 @@
         <label for="search_query">Search:</label>
         <input type="text" id="search_query" name="q" placeholder="Enter your search query">
         <button type="submit">Search</button>
+
+                    {% for flight in flights %}
+            <li>
+                <a href="{% url 'flight_detail' flight.id %}">{{ flight.flight_number }}</a>
+                (Departure: {{ flight.departure_airport }}, Arrival: {{ flight.arrival_airport }})
+            </li>
+        {% empty %}
+            <p>No flights match the search query.</p>
+        {% endfor %}
+
+
+
     </form>
 
 

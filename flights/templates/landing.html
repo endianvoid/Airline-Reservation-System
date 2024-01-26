@@ -1,61 +1,140 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome to the most awesome Airline Reservation System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<div class="container-fluid px-0">
+    <head>
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+    <style>
+
+
+body {
+      width: 400px;
+    height: 150px;
+
+}
+
+header {
+    background: #06127a;
+    color: #fff;
+}
+
+.left-side,
+.right-side {
+    height: 100vh
+
+}
+
+.navbar-transparent {
+    background: transparent
+}
+
+.navbar-nav>li>a {
+    color: #000000
+}
+
+.navbar-nav>li:hover {
+    border-bottom: 1px solid #fff
+}
+
+.navbar-nav>.active {
+    border-bottom: 1px solid #fff
+}
+
+.navbar-brand {
+    font-family: 'Allerta Stencil', sans-serif;
+    color: #fc1303;
+
+}
+
+.navbar-brand:hover {
+    color: #ba0404
+}
+
+.left-side img {
+    padding-top: 100px
+}
+
+.shape {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #4fabf7, #0000ff 70%);
+    position: absolute;
+    -webkit-clip-path: ellipse(500px 500px at 10% 5%)
+                  background-repeat: no-repeat;
+    object-position: center top;
+
+}
+
+.right-side {
+    padding-top: 150px;
+      margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+
+
+
+}
+
+.right-side h1 {
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 2.4em;
+    text-align: center;
+
+}
+
+.right-side p {
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.btn.order-button {
+    background: transparent;
+    border: 2px solid #ce0000;
+    color: #ce0000;
+    border-radius: 30%;
+    transition: 0.5s
+}
+
+.btn.order-button:hover {
+    border: 3px solid #050505;
+    color: #050505
+}
+
+    </style>
+
 </head>
-<body>
-    <header class="bg-primary text-white text-center py-4">
-        <h1>Welcome to the most awesome Airline Reservation System</h1>
-    </header>
+   <header>
+        <body>
+      <div class="shape"></div>
+      <!-- Navbar -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-transparent">
+         <a class="navbar-brand" href="">Airline Reservation</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item active"> <a class="nav-link" href="">HOME <span class="sr-only">(current)</span></a> </li>
+               <li class="nav-item"> <a class="nav-link" href="flight_list">Flight</a> </li>
+               <li class="nav-item"> <a class="nav-link" href="user_profile">Profile</a> </li>
+               <li class="nav-item"> <a class="nav-link" href="registration_view">Register</a> </li>
+               <li class="nav-item"> <a class="nav-link" href="search_view">Search</a> </li>
+            </ul>
+         </div>
+      </nav>
+      <!-- ./ end of navbar -->
+      <div class="container">
+         <div class="row">
+            <div class="col-md-6 left-side">	<img src="" class="w-100">	</div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">Airline Reservation</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registration_view' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login_view' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'flight_list' %}">View Flights</a>
-                    </li>
-                </ul>
+            <div class="col-md-6 right-side">
+               <h1>Airline Reservation</h1>
+               <p>Book Now</p>
+               <div class="text-center">	<a class="btn order-button" href="login_view">Login</a>	</div>
             </div>
-        </div>
-    </nav>
-
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        &copy; Mustafa Thaeer 2023 Airline Reservation System
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <section>
-                        <h2 class="text-center">About Us</h2>
-                        <p>
-                            Welcome to our Airline Reservation System. We provide a seamless flight booking experience.
-                        </p>
-                    </section>
-                </div>
-                <div class="col-md-6">
-                    <section>
-                        <h2 class="text-center">Contact Us</h2>
-                        <p>
-                            If you have any questions or need assistance, please don't hesitate to <a href="contact.html">contact us</a>.
-                        </p>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+         </div>
+      </div>
+        </body>
+   </header>
+</div>

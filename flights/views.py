@@ -8,12 +8,20 @@ from .models import Flight
 from .forms import FlightForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Q
 
 
 @login_required
 def user_profile(request):
     user = request.user
-    context = {'user': user}
+    reservations = Reservation.objects.filter(passenger=user)
+    total_tickets_purchased = sum(reservation.flight.available_seats for reservation in reservations)
+    context = {
+        'user': user,
+        'reservations': reservations,
+        'total_tickets_purchased': total_tickets_purchased,
+    }
+
     return render(request, 'user_profile.html', context)
 
 def registration_view(request):
@@ -54,7 +62,18 @@ def payment_view(request, payment_id):
 
 
 def search_view(request):
-    return render(request, 'search.html')
+    query = request.GET.get('q')
+
+    if query:
+        flights = Flight.objects.filter(
+            Q(flight_number__icontains=query) |
+            Q(departure_airport__icontains=query) |
+            Q(arrival_airport__icontains=query)
+        )
+    else:
+        flights = Flight.objects.all()
+
+    return render(request, 'search.html', {'flights': flights})
 
 @login_required
 def calculate_discount(request):

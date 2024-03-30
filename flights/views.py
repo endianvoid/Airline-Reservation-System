@@ -15,7 +15,7 @@ from datetime import datetime
 def user_profile(request):
     user = request.user
     reservations = Reservation.objects.filter(passenger=user)
-    total_tickets_purchased = sum(reservation.flight.available_seats for reservation in reservations)
+    total_tickets_purchased = reservations.count()
     context = {
         'user': user,
         'reservations': reservations,
@@ -57,7 +57,7 @@ def flight_detail(request, flight_id):
 
 def reservation_view(request, reservation_id):
     reservation = get_object_or_404(Reservation, pk=reservation_id)
-    return render(request, 'reservation_view.html')
+    return render(request, 'reservation_details.html', {'reservation': reservation})
 
 def payment_view(request, payment_id):
     payment = get_object_or_404(Payment, pk=payment_id)

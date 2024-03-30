@@ -30,6 +30,7 @@ urlpatterns = [
     path('registration_view/', views.registration_view, name='registration_view'),
     path('user_profile/', views.user_profile, name='user_profile'),
     path('login_view/', views.login_view, name='login_view'),
+    path('logout_view/', views.logout_view, name='logout_view'),
     path('flight_detail/<int:flight_id>/', views.flight_detail, name='flight_detail'),
     path('payment_view/', views.payment_view, name='payment_view'),
     path('search_view/', views.search_view, name='search_view'),
@@ -39,8 +40,8 @@ urlpatterns = [
     path('update_flight/<int:flight_id>/', views.update_flight, name='update_flight'),
     path('delete_flight/<int:flight_id>/', views.delete_flight, name='delete_flight'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('admin/', admin.site.urls),
     path('', landing_page, name='landing_page'),
+    path('reserve_flight/', views.reserve_flight, name="reserve_flight")
 
 
 ]

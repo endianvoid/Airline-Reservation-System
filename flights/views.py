@@ -1,15 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Flight, AirportConnection, Discount, Reservation, Payment
 from django.shortcuts import render, redirect
 from .models import Flight
-from .forms import FlightForm
+from .forms import FlightForm, FlightReserveForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q
-
+from datetime import datetime
 
 @login_required
 def user_profile(request):
@@ -46,7 +46,10 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
-
+def logout_view(request):
+    if request.method == 'GET':
+        logout(request)
+        return redirect("/")
 
 def flight_detail(request, flight_id):
     flight = get_object_or_404(Flight, pk=flight_id)
@@ -121,6 +124,27 @@ def create_flight(request):
         form = FlightForm()
 
     return render(request, 'create_flight.html', {'form': form})
+
+@login_required
+def reserve_flight(request):
+    if request.method == 'POST':
+        form = FlightReserveForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            reservation.reservation_date = datetime.now()
+            reservation.passenger = request.user
+
+            if reservation.flight.available_seats < reservation.seat_count:
+                return redirect('reserve_flight')
+            else:
+                reservation.flight.available_seats = reservation.flight.available_seats - reservation.seat_count
+                reservation.flight.save()
+                reservation.save()
+                return redirect('flight_list')
+    else:
+        form = FlightReserveForm()
+
+        return render(request, 'reserve_flight.html', {'form': form})
 
 @login_required
 def update_flight(request, flight_id):

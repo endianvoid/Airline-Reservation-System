@@ -1,5 +1,5 @@
 from django import forms
-from .models import Flight
+from .models import Flight, Reservation
 
 class FlightForm(forms.ModelForm):
     class Meta:
@@ -24,4 +24,10 @@ class FlightForm(forms.ModelForm):
         widget=forms.DateTimeInput(attrs={'placeholder': 'YYYY-MM-DD HH:MM'})
     )
 
-
+class FlightReserveForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = [
+            'flight',
+            'seat_count',
+        ]

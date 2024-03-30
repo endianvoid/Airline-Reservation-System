@@ -25,7 +25,8 @@ class Flight(models.Model):
     flight_number = models.CharField(max_length=10)
     departure_airport = models.CharField(max_length=3)
     arrival_airport = models.CharField(max_length=3)
-    available_seats = models.PositiveIntegerField()
+    available_seats = models.PositiveIntegerField(default=125)
+    max_seats = models.PositiveIntegerField(default=125)
     ticket_price = models.DecimalField(max_digits=10, decimal_places=2)
     departure_time = models.DateTimeField()
     arrival_time = models.DateTimeField()
@@ -37,6 +38,9 @@ class Flight(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.flight_number + self.departure_airport
 
 class FamilyMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -59,10 +63,8 @@ class Reservation(models.Model):
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
     passenger = models.ForeignKey(User, on_delete=models.CASCADE)
     reservation_date = models.DateTimeField()
-    seat_number = models.CharField(max_length=5)
     is_paid = models.BooleanField(default=False)
-    family_members = models.ManyToManyField(FamilyMember, blank=True)
-
+    seat_count = models.PositiveIntegerField(default=0)
     def __str__(self):
         return f"Reservation for {self.passenger.username} on {self.flight.flight_number}"
 

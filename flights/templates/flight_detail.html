@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservation details</title>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  {% load static %}
+  <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 <body>
-    {% include "Header.html" %}
-    <section class="bg-light py-3 py-md-5 py-xl-8">
-
-  <div class="container">
-    <div class="row gy-4 gy-lg-0">
-      <div class="col-12 col-lg-8 col-xl-9">
-        <div class="card widget-card border-light shadow-sm">
-          <div class="card-body p-4">
-            <div class="tab-content pt-4" id="profileTabContent">
-              <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
-
-                <h5 class="mb-3">Flight details</h5>
+<div id="booking" class="section">
+      {% include "Header.html" %}
+        <div class="container">
+      <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Flight details </h3>
+  </div>
+  <div class="panel-body">
                 <div class="row g-0">
                   <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
                     <div class="p-2">flight number</div>
@@ -60,13 +57,15 @@
                   <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
                     <div class="p-2">{{ flight.ticket_price }}</div>
                   </div>
-                </div>
-              </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                  <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                        <a type="button" class="btn btn-primary" href="/reserve_flight/">Reserve your flight now !</a>
+                    </div>
 
-</section>
+                </div>
+  </div>
+</div>
+
+</div>
+    </div>
 </body>
 </html>

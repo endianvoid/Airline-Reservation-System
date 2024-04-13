@@ -181,4 +181,4 @@ def flight_list(request):
 
 
 def landing_page(request):
-    return render(request, 'landing.html')
+    return render(request, 'BaseLanding.html')

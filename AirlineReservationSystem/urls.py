@@ -42,7 +42,9 @@ urlpatterns = [
     path('delete_flight/<int:flight_id>/', views.delete_flight, name='delete_flight'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', landing_page, name='landing_page'),
-    path('reserve_flight/', views.reserve_flight, name="reserve_flight")
+    path('reserve_flight/', views.reserve_flight, name="reserve_flight"),
+    path('payment_page/', views.payment_page, name="payment_page"),
+    path('payment_thank_you/', views.payment_thanks, name="payment_thank_you"),
 
 
 ]

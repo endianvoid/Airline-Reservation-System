@@ -137,10 +137,12 @@ def reserve_flight(request):
             if reservation.flight.available_seats < reservation.seat_count:
                 return redirect('reserve_flight')
             else:
-                reservation.flight.available_seats = reservation.flight.available_seats - reservation.seat_count
-                reservation.flight.save()
-                reservation.save()
-                return redirect('flight_list')
+                #reservation.flight.available_seats = reservation.flight.available_seats - reservation.seat_count
+                #reservation.flight.save()
+                #reservation.save()
+                request.session['flight_reservation_detail'] = request.POST
+                request.session['flight_reservation_object_id'] = reservation.flight.pk
+                return redirect('payment_page')
     else:
         form = FlightReserveForm()
 
@@ -182,3 +184,25 @@ def flight_list(request):
 
 def landing_page(request):
     return render(request, 'BaseLanding.html')
+
+def payment_page(request):
+    if request.method == 'POST':
+        form = FlightReserveForm(request.session['flight_reservation_detail'])
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            reservation.reservation_date = datetime.now()
+            reservation.passenger = request.user
+
+            if reservation.flight.available_seats < reservation.seat_count:
+                return redirect('reserve_flight')
+            else:
+                reservation.flight.available_seats = reservation.flight.available_seats - reservation.seat_count
+                reservation.flight.save()
+                reservation.save()
+                return redirect('payment_thank_you')
+    else:
+        flight = Flight.objects.get(pk=request.session['flight_reservation_object_id'])
+        return render(request, "payment_page.html", {"flight" : flight})
+
+def payment_thanks(request):
+    return render(request, "payment_thankyou.html")
